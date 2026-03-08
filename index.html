@@ -1,113 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SidelineOps | Game-day operations, simplified.</title>
+  <meta
+    name="description"
+    content="SidelineOps helps coaches manage schedules, notifications, and volunteer coordination in one place."
+  />
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-<title>SidelineOps</title>
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-2: #132b4d;
+      --navy-3: #1b3a67;
+      --carolina: #4b9cd3;
+      --carolina-light: #a8d0f0;
+      --white: #ffffff;
+      --off-white: #f5f9fc;
+      --text-soft: #d8e4f0;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+      --radius: 18px;
+      --max-width: 1180px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:#0B1F3A;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;
-text-align:center;
-}
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(75, 156, 211, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(75, 156, 211, 0.12), transparent 24%),
+        linear-gradient(180deg, var(--navy) 0%, #0a1930 100%);
+      color: var(--white);
+      min-height: 100vh;
+    }
 
-.container{
-max-width:750px;
-padding:40px 20px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.logo{
-width:220px;
-margin-bottom:30px;
-}
+    .page {
+      width: 100%;
+    }
 
-h1{
-font-size:3rem;
-margin-bottom:10px;
-font-weight:700;
-}
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
 
-.tagline{
-font-size:1.4rem;
-color:#4B9CD3;
-margin-bottom:30px;
-}
+    .topbar {
+      padding: 22px 0 10px;
+    }
 
-p{
-font-size:1.1rem;
-line-height:1.6;
-margin-bottom:15px;
-}
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-.button{
-display:inline-block;
-margin-top:25px;
-padding:14px 28px;
-background:#4B9CD3;
-color:#0B1F3A;
-text-decoration:none;
-border-radius:8px;
-font-weight:600;
-transition:0.2s;
-}
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-soft);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
 
-.button:hover{
-background:#3c86b8;
-}
+    .brand-mini img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
 
-.footer{
-margin-top:40px;
-font-size:0.9rem;
-color:#A8D0F0;
-}
+    .hero {
+      padding: 34px 0 42px;
+    }
 
-</style>
+    .hero-shell {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
 
+    .hero-copy {
+      padding: 18px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--carolina-light);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+    }
+
+    .lead {
+      margin: 0 0 16px;
+      font-size: clamp(1.05rem, 1.9vw, 1.24rem);
+      line-height: 1.75;
+      color: var(--text-soft);
+      max-width: 690px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--carolina);
+      color: var(--navy);
+    }
+
+    .btn-primary:hover {
+      background: #66acda;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero-panel {
+      position: relative;
+    }
+
+    .logo-card {
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 34px 30px 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .logo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(75, 156, 211, 0.26), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(168, 208, 240, 0.16), transparent 22%);
+      pointer-events: none;
+    }
+
+    .logo-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 260px;
+      padding: 18px;
+    }
+
+    .logo-wrap img {
+      width: min(100%, 460px);
+      max-height: 300px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
+    }
+
+    .logo-caption {
+      position: relative;
+      z-index: 1;
+      margin-top: 6px;
+      color: var(--text-soft);
+      text-align: center;
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .section {
+      padding: 28px 0 64px;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-label {
+      color: var(--carolina-light);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtext {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 1.04rem;
+      line-height: 1.75;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(75, 156, 211, 0.18);
+      color: var(--carolina-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      border: 1px solid rgba(168, 208, 240, 0.18);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      line-height: 1.3;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .highlight-band {
+      margin-top: 26px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(75, 156, 211, 0.16), rgba(75, 156, 211, 0.08));
+      border: 1px solid rgba(168, 208, 240, 0.18);
+      border-radius: 20px;
+      color: var(--off-white);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    }
+
+    .highlight-band strong {
+      color: var(--white);
+    }
+
+    .footer {
+      padding: 18px 0 42px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        order: 1;
+      }
+
+      .hero-panel {
+        order: 0;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-wrap {
+        min-height: 220px;
+      }
+
+      .logo-wrap img {
+        width: min(100%, 400px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        padding-top: 16px;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .container {
+        width: min(100% - 20px, var(--max-width));
+      }
+
+      .logo-card {
+        padding: 26px 18px 22px;
+      }
+
+      .logo-wrap {
+        min-height: 170px;
+        padding: 8px;
+      }
+
+      .logo-wrap img {
+        width: min(100%, 320px);
+        max-height: 210px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <header class="topbar">
+      <div class="container brand-row">
+        <div class="brand-mini">
+          <img src="assets/sidelineops-logo.png" alt="SidelineOps logo icon" />
+          <span>SidelineOps</span>
+        </div>
+      </div>
+    </header>
 
-<div class="container">
+    <main>
+      <section class="hero">
+        <div class="container hero-shell">
+          <div class="hero-copy">
+            <div class="eyebrow">Built for high school athletic programs</div>
 
-<img src="assets/sidelineopslogo.png" class="logo">
+            <h1>Game-day operations, simplified.</h1>
 
-<h1>SidelineOps</h1>
+            <p class="lead">
+              SidelineOps helps coaches manage schedules, notifications, and volunteer coordination
+              in one place — so players, parents, boosters, and support staff stay informed when plans change.
+            </p>
 
-<div class="tagline">
-Game-day operations, simplified.
-</div>
+            <p class="lead">
+              Update an event once and the right people are notified fast, without bouncing between
+              calendars, texts, and multiple group threads.
+            </p>
 
-<p>
-SidelineOps helps coaches manage schedules, notifications, and volunteer coordination in one place.
-</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mailto:sidelineopshq@gmail.com?subject=SidelineOps%20Early%20Access">
+                Request Early Access
+              </a>
+              <a class="btn btn-secondary" href="#features">
+                View Core Features
+              </a>
+            </div>
+          </div>
 
-<p>
-Update a game once and players, parents, and volunteers are automatically notified automatically.
-</p>
+          <div class="hero-panel">
+            <div class="logo-card">
+              <div class="logo-wrap">
+                <img src="assets/sidelineops-logo.png" alt="SidelineOps full logo" />
+              </div>
+              <div class="logo-caption">
+                A modern operations hub for coaches, parents, and booster-supported programs.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<a class="button" href="mailto:sidelineopshq@gmail.com">
-Request Early Access
-</a>
+      <section class="section" id="features">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">Core Features</div>
+            <h2>Everything centered around fast updates and fewer missed details.</h2>
+            <p class="section-subtext">
+              SidelineOps is designed to reduce communication breakdowns, simplify volunteer coordination,
+              and make schedule changes easier to manage across the groups that matter most.
+            </p>
+          </div>
 
-<div class="footer">
-Pilot programs launching for the 2027 high school season.
-</div>
+          <div class="features">
+            <div class="feature-card">
+              <div class="feature-icon">01</div>
+              <h3>Automated Notifications</h3>
+              <p>
+                Update a game or practice once and send changes quickly to players, parents, boosters,
+                and support roles without relying on memory or multiple apps.
+              </p>
+            </div>
 
-</div>
+            <div class="feature-card">
+              <div class="feature-icon">02</div>
+              <h3>Volunteer Coordination</h3>
+              <p>
+                Organize gate, concessions, scoreboard, and other game-day support roles with simple
+                reminders and visibility into what is covered and what still needs help.
+              </p>
+            </div>
 
+            <div class="feature-card">
+              <div class="feature-icon">03</div>
+              <h3>Fast Team Communication</h3>
+              <p>
+                Give coaches a quicker way to message varsity, JV, parents, and booster groups so time-sensitive
+                updates are easier to send when schedules shift during a busy week.
+              </p>
+            </div>
+          </div>
+
+          <div class="highlight-band">
+            <strong>Launching pilot programs for the 2027 season.</strong>
+            SidelineOps is being shaped around real coach workflows, with a focus on schedule updates,
+            communication reliability, and practical game-day logistics.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        SidelineOps™ — Team operations built for the sideline.
+      </div>
+    </footer>
+  </div>
 </body>
-
 </html>
