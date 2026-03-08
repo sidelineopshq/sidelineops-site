@@ -393,6 +393,67 @@
         width: 100%;
       }
     }
+    .problem-solution-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.ps-card {
+  border-radius: 20px;
+  padding: 26px 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+.problem-card {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.solution-card {
+  background: linear-gradient(180deg, rgba(75, 156, 211, 0.16), rgba(75, 156, 211, 0.08));
+  border: 1px solid rgba(168, 208, 240, 0.18);
+}
+
+.ps-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--white);
+}
+
+.ps-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-size: 0.98rem;
+}
+
+.ps-list li + li {
+  margin-top: 8px;
+}
+
+.problem-blurb {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--off-white);
+  line-height: 1.7;
+}
+
+.problem-blurb strong {
+  color: var(--white);
+}
+
+@media (max-width: 980px) {
+  .problem-solution-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
@@ -447,6 +508,48 @@
         </div>
       </section>
 
+      <section class="section" id="problem-solution">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Why SidelineOps</div>
+      <h2>When schedules change fast, communication often breaks down.</h2>
+      <p class="section-subtext">
+        Coaches already have calendars, group threads, and email lists — but when a game is moved,
+        canceled, or updated during a busy week, getting the right message to the right people can
+        still take too many steps.
+      </p>
+    </div>
+
+    <div class="problem-solution-grid">
+      <div class="ps-card problem-card">
+        <div class="ps-title">The Problem</div>
+        <ul class="ps-list">
+          <li>Schedule changes are easy to update, but easy to forget to communicate.</li>
+          <li>Coaches often have to notify players, parents, boosters, and support roles separately.</li>
+          <li>Volunteers and game-day staff can get missed when updates happen quickly.</li>
+          <li>Programs end up relying on multiple apps, group texts, and manual follow-up.</li>
+        </ul>
+      </div>
+
+      <div class="ps-card solution-card">
+        <div class="ps-title">The SidelineOps Solution</div>
+        <ul class="ps-list">
+          <li>Update an event once and notify the right groups faster.</li>
+          <li>Work within your existing communication setup instead of replacing it.</li>
+          <li>Support game-day roles like concessions, gate, and other volunteers.</li>
+          <li>Reduce missed updates so coaches can focus more on coaching and less on coordination.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="problem-blurb">
+      <strong>Not another messaging app.</strong>
+      SidelineOps works alongside the tools your program already uses — like TeamSnap, GroupMe,
+      and email — helping coaches send updates faster and keep everyone informed when schedules change.
+    </div>
+  </div>
+</section>
+
       <section class="section" id="features">
         <div class="container">
           <div class="section-header">
@@ -482,8 +585,7 @@
               <h3>Fast Team Communication</h3>
               <p>
                 Give coaches a quicker way to message varsity, JV, parents, and booster groups so time-sensitive
-                updates are easier to send when schedules shift during a busy week.  Not another messaging app, SidelineOps integrates
-                with SMS Text/Email/GroupMe.  Utilize what you already have in a more efficient workflow.
+                updates are easier to send when schedules shift during a busy week.  
               </p>
             </div>
           </div>
