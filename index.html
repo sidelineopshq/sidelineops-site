@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SidelineOps | Game-day operations, simplified.</title>
+  <title>SidelineOps | Run your team without the chaos.</title>
   <meta
     name="description"
-    content="SidelineOps helps coaches manage schedules, notifications, and volunteer coordination in one place."
+    content="SidelineOps helps coaches manage schedules, automate reminders, and coordinate volunteers so nothing gets missed."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -311,6 +311,62 @@
       font-size: 0.98rem;
     }
 
+    .problem-solution-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .ps-card {
+      border-radius: 20px;
+      padding: 26px 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    }
+
+    .problem-card {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .solution-card {
+      background: linear-gradient(180deg, rgba(75, 156, 211, 0.16), rgba(75, 156, 211, 0.08));
+      border: 1px solid rgba(168, 208, 240, 0.18);
+    }
+
+    .ps-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+
+    .ps-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .ps-list li + li {
+      margin-top: 8px;
+    }
+
+    .problem-blurb {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--off-white);
+      line-height: 1.7;
+    }
+
+    .problem-blurb strong {
+      color: var(--white);
+    }
+
     .highlight-band {
       margin-top: 26px;
       padding: 24px;
@@ -319,6 +375,7 @@
       border-radius: 20px;
       color: var(--off-white);
       box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+      line-height: 1.8;
     }
 
     .highlight-band strong {
@@ -345,7 +402,8 @@
         order: 0;
       }
 
-      .features {
+      .features,
+      .problem-solution-grid {
         grid-template-columns: 1fr;
       }
 
@@ -393,67 +451,6 @@
         width: 100%;
       }
     }
-    .problem-solution-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 26px;
-}
-
-.ps-card {
-  border-radius: 20px;
-  padding: 26px 24px;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-}
-
-.problem-card {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.solution-card {
-  background: linear-gradient(180deg, rgba(75, 156, 211, 0.16), rgba(75, 156, 211, 0.08));
-  border: 1px solid rgba(168, 208, 240, 0.18);
-}
-
-.ps-title {
-  font-size: 1.1rem;
-  font-weight: 800;
-  margin-bottom: 14px;
-  color: var(--white);
-}
-
-.ps-list {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--text-soft);
-  line-height: 1.8;
-  font-size: 0.98rem;
-}
-
-.ps-list li + li {
-  margin-top: 8px;
-}
-
-.problem-blurb {
-  margin-top: 24px;
-  padding: 18px 20px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border);
-  color: var(--off-white);
-  line-height: 1.7;
-}
-
-.problem-blurb strong {
-  color: var(--white);
-}
-
-@media (max-width: 980px) {
-  .problem-solution-grid {
-    grid-template-columns: 1fr;
-  }
-}
   </style>
 </head>
 <body>
@@ -473,24 +470,22 @@
           <div class="hero-copy">
             <div class="eyebrow">Built for high school athletic programs</div>
 
-            <h1>Game-day operations, simplified.</h1>
+            <h1>Run your team without the chaos.</h1>
 
             <p class="lead">
-              SidelineOps helps coaches manage schedules, notifications, and volunteer coordination
-              in one place — so players, parents, boosters, and support staff stay informed when plans change.
+              SidelineOps helps coaches manage schedules, automate reminders, and coordinate volunteers — so nothing gets missed.
             </p>
 
             <p class="lead">
-              Update an event once and the right people are notified fast, without bouncing between
-              calendars, texts, and multiple group threads.
+              Update your schedule once and SidelineOps automatically notifies players, parents, and volunteers — no more chasing texts, group threads, or last-minute confusion.
             </p>
 
             <div class="hero-actions">
-              <a class="btn btn-primary" href="mailto:sidelineopshq@gmail.com?subject=SidelineOps%20Early%20Access">
-                Request Early Access
+              <a class="btn btn-primary" href="mailto:sidelineopshq@gmail.com?subject=SidelineOps%20Free%20Trial">
+                Start Free Trial
               </a>
-              <a class="btn btn-secondary" href="#features">
-                View Core Features
+              <a class="btn btn-secondary" href="#how-it-works">
+                See How It Works
               </a>
             </div>
           </div>
@@ -501,109 +496,213 @@
                 <img src="assets/sidelineops-logo.png" alt="SidelineOps full logo" />
               </div>
               <div class="logo-caption">
-                A modern operations hub for coaches, parents, and booster-supported programs.
+                A coach-friendly operations hub for schedules, reminders, volunteers, and game-day coordination.
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      <section class="section" id="how-it-works">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">How It Works</div>
+            <h2>Simple setup. Automatic communication.</h2>
+            <p class="section-subtext">
+              SidelineOps is built around how teams actually operate — from the first parent meeting to game day.
+            </p>
+          </div>
+
+          <div class="features">
+            <div class="feature-card">
+              <div class="feature-icon">1</div>
+              <h3>Add Your Schedule</h3>
+              <p>
+                Import or build your schedule with games, practices, and events in one place.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">2</div>
+              <h3>Parents Join in Seconds</h3>
+              <p>
+                Share a QR code at your team meeting. Parents sign up instantly — no spreadsheets or manual entry.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">3</div>
+              <h3>Everything Runs Automatically</h3>
+              <p>
+                Schedule changes, reminders, and volunteer updates are handled automatically so you don’t have to think about it.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="problem-solution">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Why SidelineOps</div>
-      <h2>When schedules change fast, communication often breaks down.</h2>
-      <p class="section-subtext">
-        Coaches already have calendars, group threads, and email lists — but when a game is moved,
-        canceled, or updated during a busy week, getting the right message to the right people can
-        still take too many steps.
-      </p>
-    </div>
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">Why SidelineOps</div>
+            <h2>When schedules change fast, communication often breaks down.</h2>
+            <p class="section-subtext">
+              Coaches already have calendars, group threads, and email lists — but when a game is moved, canceled, or updated during a busy week, getting the right message to the right people can still take too many steps.
+            </p>
+          </div>
 
-    <div class="problem-solution-grid">
-      <div class="ps-card problem-card">
-        <div class="ps-title">The Problem</div>
-        <ul class="ps-list">
-          <li>Schedule changes are easy to update, but easy to forget to communicate.</li>
-          <li>Coaches often have to notify players, parents, boosters, and support roles separately.</li>
-          <li>Volunteers and game-day staff can get missed when updates happen quickly.</li>
-          <li>Programs end up relying on multiple apps, group texts, and manual follow-up.</li>
-        </ul>
-      </div>
+          <div class="problem-solution-grid">
+            <div class="ps-card problem-card">
+              <div class="ps-title">The Problem</div>
+              <ul class="ps-list">
+                <li>Schedule changes are easy to update, but easy to forget to communicate.</li>
+                <li>Coaches often have to notify players, parents, boosters, and support roles separately.</li>
+                <li>Volunteers and game-day staff can get missed when updates happen quickly.</li>
+                <li>Programs end up relying on multiple apps, group texts, and manual follow-up.</li>
+              </ul>
+            </div>
 
-      <div class="ps-card solution-card">
-        <div class="ps-title">The SidelineOps Solution</div>
-        <ul class="ps-list">
-          <li>Update an event once and notify the right groups faster.</li>
-          <li>Work within your existing communication setup instead of replacing it.</li>
-          <li>Support game-day roles like concessions, gate, and other volunteers.</li>
-          <li>Reduce missed updates so coaches can focus more on coaching and less on coordination.</li>
-        </ul>
-      </div>
-    </div>
+            <div class="ps-card solution-card">
+              <div class="ps-title">The SidelineOps Solution</div>
+              <ul class="ps-list">
+                <li>Update your schedule once and everyone is notified automatically.</li>
+                <li>Stop sending multiple texts, emails, and group messages for the same update.</li>
+                <li>Keep volunteers and game-day roles informed without chasing people down.</li>
+                <li>Reduce missed updates so nothing falls through the cracks.</li>
+              </ul>
+            </div>
+          </div>
 
-    <div class="problem-blurb">
-      <strong>Not another messaging app.</strong>
-      SidelineOps works alongside the tools your program already uses — like TeamSnap, GroupMe,
-      and email — helping coaches send updates faster and keep everyone informed when schedules change.
-    </div>
-  </div>
-</section>
+          <div class="problem-blurb">
+            <strong>Stop chasing people.</strong>
+            SidelineOps handles schedule updates, reminders, and coordination automatically — so coaches can focus on coaching, not communication.
+          </div>
+        </div>
+      </section>
 
       <section class="section" id="features">
         <div class="container">
           <div class="section-header">
             <div class="section-label">Core Features</div>
-            <h2>Everything centered around fast updates and fewer missed details.</h2>
+            <h2>Everything centered around fewer reminders, fewer texts, and fewer missed details.</h2>
             <p class="section-subtext">
-              SidelineOps is designed to reduce communication breakdowns, simplify volunteer coordination,
-              and make schedule changes easier to manage across the groups that matter most.
+              SidelineOps is designed to reduce communication breakdowns, simplify volunteer coordination, and make schedule changes easier to manage across the groups that matter most.
             </p>
           </div>
 
           <div class="features">
             <div class="feature-card">
               <div class="feature-icon">01</div>
-              <h3>Automated Notifications</h3>
+              <h3>Automatic Schedule Updates</h3>
               <p>
-                Update a game or practice once and send changes quickly to players, parents, boosters,
-                and support roles without relying on memory or multiple apps.
+                Change a game or practice once and SidelineOps sends the update to the right people instantly.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">02</div>
-              <h3>Volunteer Coordination</h3>
+              <h3>Built-In Reminders</h3>
               <p>
-                Organize gate, concessions, scoreboard, and other game-day support roles with simple
-                reminders and visibility into what is covered and what still needs help.
+                Night-before and game-day reminders are sent automatically with arrival time, location, and key details.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">03</div>
-              <h3>Fast Team Communication</h3>
+              <h3>Volunteer Coordination</h3>
               <p>
-                Give coaches a quicker way to message varsity, JV, parents, and booster groups so time-sensitive
-                updates are easier to send when schedules shift during a busy week.  
+                Track who’s covering gate, concessions, and other roles — with reminders so nothing gets missed.
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">Game Day Automation</div>
+            <h2>Game day runs itself.</h2>
+            <p class="section-subtext">
+              SidelineOps automatically sends the information your team needs — without you having to remember.
+            </p>
+          </div>
 
           <div class="highlight-band">
+            <strong>Example Game Day Message:</strong><br /><br />
+            Game vs Huntsville<br />
+            Arrival: 3:30 PM<br />
+            Start: 5:00 PM<br />
+            Location: Home Field<br />
+            Uniform: Navy Tops<br />
+            Meal: 3:45 PM
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">Built for Coaches & Boosters</div>
+            <h2>One system for the people actually running the team.</h2>
+            <p class="section-subtext">
+              SidelineOps helps coaches stay on top of schedules and reminders, while booster leaders keep volunteers organized and game-day operations covered.
+            </p>
+          </div>
+
+          <div class="features">
+            <div class="feature-card">
+              <div class="feature-icon">C</div>
+              <h3>For Coaches</h3>
+              <p>
+                Manage schedules, send updates fast, and stop relying on memory when plans change.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">B</div>
+              <h3>For Boosters</h3>
+              <p>
+                Organize gate, concessions, and support roles with better visibility and fewer last-minute scrambles.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">P</div>
+              <h3>For Parents</h3>
+              <p>
+                Get the information you need in one place — schedules, reminders, volunteer signups, and game-day details.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="highlight-band">
+            <strong>🎉 Founding Team Offer</strong><br /><br />
+            Join SidelineOps early and lock in discounted pricing through 2027.<br />
+            Limited spots available for initial teams.
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="highlight-band">
             <strong>Launching pilot programs for the 2027 spring season.</strong>
-            SidelineOps is being shaped around real coach workflows, with a focus on schedule updates,
-            communication reliability, and practical game-day logistics.
+            SidelineOps is being shaped around real coach workflows, with a focus on schedule updates, communication reliability, and practical game-day logistics.
           </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            © 2026 SidelineOps™ — Team operations built for the sideline.
-        </div>
+      <div class="container">
+        © 2026 SidelineOps™ — Team operations built for the sideline.
+      </div>
     </footer>
-    </div>
+  </div>
 </body>
 </html>
