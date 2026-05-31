@@ -3,648 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SidelineOps HQ | Run your team without the chaos.</title>
-  <meta name="description" content="SidelineOps HQ helps coaches manage schedules, automate reminders, and coordinate volunteers — so nothing gets missed. Now in beta." />
+  <title>SidelineOps HQ | Program operations for high school athletics</title>
+  <meta name="description" content="Schedules, volunteers, and parent alerts for high school athletic programs. Multi-team support, automatic change notifications, public schedule — no parent app required." />
+  <link rel="canonical" href="https://www.sidelineopshq.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.sidelineopshq.com/" />
+  <meta property="og:title" content="SidelineOps HQ — Run your program without the chaos" />
+  <meta property="og:description" content="Program operations for high school athletics. Schedules, volunteers, and parent communication for Varsity, JV, and Freshman — in one place." />
+  <meta property="og:image" content="https://www.sidelineopshq.com/assets/sidelineops-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SidelineOps HQ — High school athletic program operations" />
+  <meta name="twitter:description" content="Update your schedule once. Parents, volunteers, and coordinators get the right alert automatically." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/sidelineops-favicon.ico" />
-
-  <style>
-    :root {
-      --navy: #0b1f3a;
-      --navy-2: #132b4d;
-      --navy-3: #1b3a67;
-      --carolina: #4b9cd3;
-      --carolina-light: #a8d0f0;
-      --white: #ffffff;
-      --off-white: #f5f9fc;
-      --text-soft: #d8e4f0;
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 18px 45px rgba(0,0,0,0.22);
-      --radius: 18px;
-      --max-width: 1180px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(75,156,211,0.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(75,156,211,0.12), transparent 24%),
-        linear-gradient(180deg, var(--navy) 0%, #0a1930 100%);
-      color: var(--white);
-      min-height: 100vh;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      width: min(100% - 32px, var(--max-width));
-      margin: 0 auto;
-    }
-
-    /* ── TOPBAR ── */
-    .topbar { padding: 22px 0 10px; }
-
-    .brand-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand-mini {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text-soft);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .brand-mini img {
-      width: 76px;
-      height: 76px;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .nav-link {
-      color: var(--text-soft);
-      font-size: 0.95rem;
-      font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 10px;
-      transition: color 0.18s, background 0.18s;
-    }
-
-    .nav-link:hover {
-      color: var(--white);
-      background: rgba(255,255,255,0.07);
-    }
-
-    /* ── BUTTONS ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-      box-shadow: var(--shadow);
-      white-space: nowrap;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary { background: var(--carolina); color: var(--navy); }
-    .btn-primary:hover { background: #66acda; }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: var(--white);
-      border: 1px solid var(--border);
-      box-shadow: none;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.10); }
-
-    .btn-outline-small {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 16px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      background: transparent;
-      color: var(--carolina-light);
-      border: 1px solid rgba(168,208,240,0.3);
-      box-shadow: none;
-      transition: background 0.18s, border-color 0.18s;
-    }
-    .btn-outline-small:hover {
-      background: rgba(75,156,211,0.12);
-      border-color: rgba(168,208,240,0.5);
-    }
-
-    /* ── HERO ── */
-    .hero { padding: 34px 0 52px; }
-
-    .hero-shell {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-copy { padding: 18px 0; }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      color: var(--carolina-light);
-      border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      backdrop-filter: blur(8px);
-    }
-
-    .beta-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 6px #4ade80;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    h1 {
-      margin: 0 0 18px;
-      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
-      line-height: 1.04;
-      letter-spacing: -0.03em;
-      font-weight: 800;
-    }
-
-    .lead {
-      margin: 0 0 14px;
-      font-size: clamp(1rem, 1.8vw, 1.18rem);
-      line-height: 1.75;
-      color: var(--text-soft);
-      max-width: 640px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
-
-    .hero-note {
-      margin-top: 14px;
-      font-size: 0.85rem;
-      color: rgba(168,208,240,0.65);
-    }
-
-    /* Hero card */
-    .hero-panel { position: relative; }
-
-    .logo-card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      padding: 34px 30px 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      overflow: hidden;
-    }
-
-    .logo-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 15%, rgba(75,156,211,0.26), transparent 30%),
-        radial-gradient(circle at 85% 18%, rgba(168,208,240,0.16), transparent 22%);
-      pointer-events: none;
-    }
-
-    .logo-wrap {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 240px;
-      padding: 18px;
-    }
-
-    .logo-wrap img {
-      width: min(100%, 420px);
-      max-height: 280px;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 12px 28px rgba(0,0,0,0.28));
-    }
-
-    .logo-caption {
-      position: relative;
-      z-index: 1;
-      margin-top: 6px;
-      color: var(--text-soft);
-      text-align: center;
-      line-height: 1.65;
-      font-size: 0.96rem;
-    }
-
-    /* Feature stat pills */
-    .stat-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat-pill {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.82rem;
-      color: var(--carolina-light);
-      font-weight: 500;
-    }
-
-    .stat-pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--carolina);
-    }
-
-    /* ── SECTIONS ── */
-    .section { padding: 28px 0 64px; }
-
-    .section-header {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .section-label {
-      color: var(--carolina-light);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.82rem;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    .section-subtext {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 1.02rem;
-      line-height: 1.75;
-    }
-
-    /* ── FEATURE CARDS ── */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    .features-2col {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .feature-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .feature-card:hover {
-      border-color: rgba(75,156,211,0.35);
-      transform: translateY(-2px);
-    }
-
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(75,156,211,0.18);
-      color: var(--carolina-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      border: 1px solid rgba(168,208,240,0.18);
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.06rem;
-      line-height: 1.3;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--text-soft);
-      line-height: 1.7;
-      font-size: 0.97rem;
-    }
-
-    /* ── PROBLEM / SOLUTION ── */
-    .problem-solution-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    .ps-card {
-      border-radius: 20px;
-      padding: 28px 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-    }
-
-    .problem-card { background: rgba(255,255,255,0.05); }
-
-    .solution-card {
-      background: linear-gradient(180deg, rgba(75,156,211,0.16), rgba(75,156,211,0.08));
-      border: 1px solid rgba(168,208,240,0.18);
-    }
-
-    .ps-title {
-      font-size: 1.08rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      color: var(--white);
-    }
-
-    .ps-list {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--text-soft);
-      line-height: 1.85;
-      font-size: 0.97rem;
-    }
-
-    .ps-list li + li { margin-top: 8px; }
-
-    /* ── ROLE CARDS ── */
-    .role-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    .role-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 22px;
-    }
-
-    .role-badge {
-      display: inline-block;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      background: rgba(75,156,211,0.18);
-      color: var(--carolina-light);
-      border: 1px solid rgba(168,208,240,0.18);
-    }
-
-    .role-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.1rem;
-    }
-
-    .role-card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--text-soft);
-      line-height: 1.85;
-      font-size: 0.95rem;
-    }
-
-    .role-card li + li { margin-top: 6px; }
-
-    /* ── HIGHLIGHT BAND ── */
-    .highlight-band {
-      margin-top: 26px;
-      padding: 28px 30px;
-      background: linear-gradient(135deg, rgba(75,156,211,0.18), rgba(75,156,211,0.08));
-      border: 1px solid rgba(168,208,240,0.2);
-      border-radius: 22px;
-      color: var(--off-white);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-      line-height: 1.8;
-    }
-
-    .highlight-band strong { color: var(--white); }
-
-    /* ── BETA CTA SECTION ── */
-    .cta-section {
-      padding: 20px 0 80px;
-    }
-
-    .cta-card {
-      background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
-      border: 1px solid rgba(168,208,240,0.2);
-      border-radius: 28px;
-      padding: 56px 48px;
-      text-align: center;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(75,156,211,0.2), transparent 40%),
-        radial-gradient(circle at 80% 50%, rgba(75,156,211,0.12), transparent 40%);
-      pointer-events: none;
-    }
-
-    .cta-card > * { position: relative; z-index: 1; }
-
-    .cta-card h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin: 0 0 16px;
-    }
-
-    .cta-card p {
-      color: var(--text-soft);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 580px;
-      margin: 0 auto 32px;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      justify-content: center;
-    }
-
-    .cta-note {
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: rgba(168,208,240,0.6);
-    }
-
-    /* ── EXAMPLE MESSAGE BOX ── */
-    .message-demo {
-      background: var(--navy-2);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 26px;
-      font-size: 0.97rem;
-      line-height: 1.9;
-      color: var(--text-soft);
-      margin-top: 26px;
-      max-width: 480px;
-    }
-
-    .message-demo strong { color: var(--white); }
-
-    .message-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--carolina-light);
-      margin-bottom: 14px;
-    }
-
-    /* ── CHANNELS ROW ── */
-    .channels-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .channel-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      font-weight: 500;
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      padding: 20px 0 44px;
-      color: var(--text-soft);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .footer-links a {
-      color: rgba(168,208,240,0.6);
-      font-size: 0.88rem;
-      transition: color 0.18s;
-    }
-
-    .footer-links a:hover { color: var(--carolina-light); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 980px) {
-      .hero-shell { grid-template-columns: 1fr; }
-      .hero-copy { order: 1; }
-      .hero-panel { order: 0; }
-      .features,
-      .role-grid,
-      .problem-solution-grid { grid-template-columns: 1fr; }
-      .features-2col { grid-template-columns: 1fr; }
-      .cta-card { padding: 40px 28px; }
-    }
-
-    @media (max-width: 640px) {
-      .topbar { padding-top: 16px; }
-      .hero { padding-top: 20px; }
-      .container { width: min(100% - 20px, var(--max-width)); }
-      .logo-card { padding: 26px 18px 22px; }
-      .logo-wrap { min-height: 170px; padding: 8px; }
-      .logo-wrap img { width: min(100%, 300px); max-height: 210px; }
-      .hero-actions { flex-direction: column; }
-      .btn { width: 100%; }
-      .nav-link { display: none; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/site.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SidelineOps HQ",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Program operations platform for high school athletics — schedules, volunteers, and parent communication.",
+    "url": "https://app.sidelineopshq.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "999",
+      "priceCurrency": "USD",
+      "priceValidUntil": "2027-12-31"
+    }
+  }
+  </script>
 </head>
 <body>
   <div class="page">
 
-    <!-- TOPBAR -->
     <header class="topbar">
       <div class="container brand-row">
-        <div class="brand-mini">
+        <a class="brand-mini" href="index.html">
           <img src="assets/sidelineops-logo-cropped.png" alt="SidelineOps HQ logo" />
           <span>SidelineOps HQ</span>
-        </div>
-        <nav class="nav-actions">
-          <a class="nav-link" href="#how-it-works">How It Works</a>
-          <a class="nav-link" href="#features">Features</a>
-          <a class="btn-outline-small" href="https://app.sidelineopshq.com/login">Log In</a>
-          <a class="btn btn-primary" style="min-height:40px;padding:0 18px;font-size:0.9rem;" href="https://app.sidelineopshq.com/signup">Request Beta Access</a>
+        </a>
+        <nav class="nav-actions" aria-label="Main navigation">
+          <div class="nav-links">
+            <a class="nav-link" href="#how-it-works">How It Works</a>
+            <a class="nav-link" href="#features">Features</a>
+            <a class="nav-link" href="compare.html">Compare</a>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+          </div>
+          <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <div class="nav-cta-group">
+            <a class="btn-outline-small" href="https://app.sidelineopshq.com/login">Log In</a>
+            <a class="btn btn-primary" style="min-height:40px;padding:0 18px;font-size:0.9rem;" href="https://app.sidelineopshq.com/signup">Request Beta Access</a>
+          </div>
         </nav>
       </div>
     </header>
@@ -657,28 +70,36 @@
           <div class="hero-copy">
             <div class="eyebrow">
               <span class="beta-dot"></span>
-              Now in Beta · Built for high school athletic programs
+              Now in beta · Built for multi-team HS programs
             </div>
 
-            <h1>Run your team without the chaos.</h1>
+            <h1>Run your program without the chaos.</h1>
 
             <p class="lead">
-              SidelineOps HQ helps coaches manage schedules, automate notifications, and coordinate volunteers — so nothing gets missed and no one gets left out of the loop.
+              SidelineOps HQ is program operations for high school athletics — schedules, volunteers,
+              and parent alerts for Varsity, JV, and Freshman under one roof.
             </p>
 
             <p class="lead">
-              Update your schedule once and SidelineOps HQ automatically notifies parents, volunteers, and support staff across email and GroupMe — no more chasing texts or last-minute confusion.
+              Update the schedule once. Parents, volunteers, and coordinators get the right message
+              automatically — by email and GroupMe. No app download for parents.
             </p>
 
             <div class="hero-actions">
               <a class="btn btn-primary" href="https://app.sidelineopshq.com/signup">
                 Request Beta Access
               </a>
-              <a class="btn btn-secondary" href="https://app.sidelineopshq.com/login">
-                Sign In
+              <a class="btn btn-secondary" href="compare.html">
+                See How We Compare
               </a>
             </div>
-            <p class="hero-note">Beta is invite-only. Request access and we'll be in touch.</p>
+            <p class="hero-note">Invite-only beta · Softball &amp; baseball programs welcome · <a href="pricing.html" style="color:var(--carolina-light);">Founding pricing from $999/yr</a></p>
+
+            <div class="hero-trust">
+              <div class="trust-item"><span class="trust-icon">✓</span> No parent accounts required</div>
+              <div class="trust-item"><span class="trust-icon">✓</span> Coach actions in &lt;3 taps</div>
+              <div class="trust-item"><span class="trust-icon">✓</span> Email-first notifications</div>
+            </div>
           </div>
 
           <div class="hero-panel">
@@ -687,16 +108,64 @@
                 <img src="assets/sidelineops-logo.png" alt="SidelineOps HQ full logo" />
               </div>
               <div class="logo-caption">
-                A coach-friendly operations hub for schedules, notifications, volunteers, and game-day coordination.
+                The operational layer between your spreadsheet and your group chat — built for coaches who run multi-team programs.
               </div>
               <div class="stat-row">
-                <div class="stat-pill"><span class="stat-pill-dot"></span> Schedule management</div>
-                <div class="stat-pill"><span class="stat-pill-dot"></span> Auto notifications</div>
-                <div class="stat-pill"><span class="stat-pill-dot"></span> Volunteer coordination</div>
-                <div class="stat-pill"><span class="stat-pill-dot"></span> Parent roster</div>
-                <div class="stat-pill"><span class="stat-pill-dot"></span> Meal coordination</div>
+                <div class="stat-pill"><span class="stat-pill-dot"></span> Multi-team schedules</div>
+                <div class="stat-pill"><span class="stat-pill-dot"></span> Change/cancel alerts</div>
+                <div class="stat-pill"><span class="stat-pill-dot"></span> Volunteer signup</div>
+                <div class="stat-pill"><span class="stat-pill-dot"></span> Public schedule + ICS</div>
                 <div class="stat-pill"><span class="stat-pill-dot"></span> GroupMe integration</div>
+                <div class="stat-pill"><span class="stat-pill-dot"></span> Meal coordination</div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ICP -->
+      <section class="section" style="padding-top:0;padding-bottom:40px;">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-label">Built for</div>
+            <h2>High school programs that outgrew the group chat</h2>
+          </div>
+          <div class="icp-grid">
+            <div class="icp-item">
+              <strong>Head coaches</strong>
+              <span>Running Varsity, JV, and Freshman from one schedule</span>
+            </div>
+            <div class="icp-item">
+              <strong>Volunteer coordinators</strong>
+              <span>Filling game-day roles without chasing texts</span>
+            </div>
+            <div class="icp-item">
+              <strong>Booster-funded programs</strong>
+              <span>Softball, baseball, and similar multi-team sports</span>
+            </div>
+            <div class="icp-item">
+              <strong>Parents &amp; fans</strong>
+              <span>Public schedule and alerts — no login required</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOCIAL PROOF -->
+      <section class="section" style="padding-top:0;padding-bottom:40px;">
+        <div class="container">
+          <div class="proof-band">
+            <div class="proof-badge">
+              <strong>Beta partner</strong>
+              <span>James Clemens<br />Softball</span>
+            </div>
+            <div>
+              <p class="proof-quote">
+                Running a multi-team program means schedule changes, volunteer gaps, and parent questions
+                all hit at once. James Clemens Softball is our anchor beta — using SidelineOps HQ for schedules,
+                volunteer coordination, and parent communication through the 2026 season.
+              </p>
+              <p class="proof-attribution">Active beta partner · Full program use target August 2026 · Madison, AL</p>
             </div>
           </div>
         </div>
@@ -707,32 +176,35 @@
         <div class="container">
           <div class="section-header">
             <div class="section-label">How It Works</div>
-            <h2>Simple setup. Automatic communication.</h2>
+            <h2>Import your season. Parents join in seconds. Alerts run themselves.</h2>
             <p class="section-subtext">
-              SidelineOps HQ is built around how teams actually operate — from building the schedule to game day logistics.
+              Three steps from spreadsheet chaos to a program your parents and volunteers can actually follow.
             </p>
           </div>
 
           <div class="features">
             <div class="feature-card">
               <div class="feature-icon">1</div>
-              <h3>Build Your Schedule</h3>
+              <h3>Import or build your schedule</h3>
               <p>
-                Import your schedule from a spreadsheet or build it event by event. Keep it private until you're ready to share it with parents.
+                Upload a spreadsheet or add events one at a time. Keep it private until you're ready,
+                then publish a branded public page and ICS calendar feeds.
               </p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">2</div>
-              <h3>Parents Join in Seconds</h3>
+              <h3>Parents join via QR code</h3>
               <p>
-                Share a QR code at your team meeting. Parents search for their player, sign up, and start receiving updates — no app download required.
+                Share a link at your parent meeting. Parents find their player, subscribe to updates,
+                and view the schedule — no app download or account required.
               </p>
             </div>
             <div class="feature-card">
               <div class="feature-icon">3</div>
-              <h3>Everything Runs Automatically</h3>
+              <h3>Changes notify the right people</h3>
               <p>
-                Schedule changes, game-day reminders, weekly digests, and volunteer updates are sent automatically — so you stay focused on coaching.
+                Edit a time, cancel a game, or open a volunteer slot — alerts go to parents,
+                assigned volunteers, meal coordinators, and officials automatically.
               </p>
             </div>
           </div>
@@ -744,34 +216,40 @@
         <div class="container">
           <div class="section-header">
             <div class="section-label">Why SidelineOps HQ</div>
-            <h2>When schedules change fast, communication breaks down.</h2>
+            <h2>When the schedule moves, communication breaks down.</h2>
             <p class="section-subtext">
-              Coaches already have calendars, group threads, and email lists — but when a game is moved or canceled mid-week, getting the right message to the right people still takes too many steps.
+              Coaches already have calendars, group threads, and email lists — but a rain delay on Wednesday
+              still means five separate messages to five different groups.
             </p>
           </div>
 
           <div class="problem-solution-grid">
             <div class="ps-card problem-card">
-              <div class="ps-title">The Problem</div>
+              <div class="ps-title">The problem</div>
               <ul class="ps-list">
-                <li>Schedule changes are easy to make, but easy to forget to communicate.</li>
-                <li>Coaches notify players, parents, volunteers, and support staff separately — using different tools.</li>
-                <li>Volunteer roles get missed when changes happen quickly.</li>
-                <li>Programs rely on multiple apps, group texts, and manual follow-up.</li>
-                <li>Meal coordinators, officials, and field managers are often left out of updates entirely.</li>
+                <li>Schedule changes are easy to make, hard to communicate consistently.</li>
+                <li>Parents, players, volunteers, and meal coordinators get updated separately.</li>
+                <li>Volunteer slots go unfilled when games move or get added.</li>
+                <li>GroupMe is great for chatter — terrible as a schedule system of record.</li>
+                <li>Spreadsheets don't send alerts when cell B14 changes at 4 PM.</li>
               </ul>
             </div>
 
             <div class="ps-card solution-card">
-              <div class="ps-title">The SidelineOps HQ Solution</div>
+              <div class="ps-title">The SidelineOps HQ approach</div>
               <ul class="ps-list">
-                <li>Update your schedule once — everyone who needs to know is notified automatically.</li>
-                <li>One platform for coaches, parents, volunteers, and support staff.</li>
-                <li>Volunteer slots, reminders, and help-needed alerts handled without manual follow-up.</li>
-                <li>Meal coordinators and officials get targeted notifications relevant to their role.</li>
-                <li>Weekly digests and cancellation alerts keep everyone in sync all season.</li>
+                <li>One schedule update triggers targeted alerts to everyone affected.</li>
+                <li>Volunteer signup, assignments, and help-needed alerts in one place.</li>
+                <li>Public schedule page parents can bookmark — plus ICS for their calendar app.</li>
+                <li>GroupMe integration for teams that already live there.</li>
+                <li>Multi-team programs share events, call-ups, and team-specific times.</li>
               </ul>
             </div>
+          </div>
+
+          <div class="highlight-band" style="margin-top:22px;">
+            <strong>Keep GroupMe for team chatter.</strong> Use SidelineOps HQ for <em>who does what, when</em>.
+            <a href="compare.html" style="color:var(--carolina-light);margin-left:6px;">See full comparison →</a>
           </div>
         </div>
       </section>
@@ -781,82 +259,92 @@
         <div class="container">
           <div class="section-header">
             <div class="section-label">Core Features</div>
-            <h2>Everything your program needs in one place.</h2>
+            <h2>Program operations — not a generic messaging app</h2>
             <p class="section-subtext">
-              SidelineOps HQ is designed to reduce communication breakdowns, simplify volunteer coordination, and make schedule management effortless for multi-team programs.
+              Focused on what coaches actually do every week: schedule, notify, coordinate volunteers,
+              and keep parents informed. We integrate with what you use; we don't try to replace your whole school stack.
             </p>
           </div>
 
           <div class="features">
             <div class="feature-card">
               <div class="feature-icon">📅</div>
-              <h3>Schedule Management</h3>
+              <h3>Multi-team schedules</h3>
               <p>
-                Build your schedule event by event or upload a spreadsheet to create your entire season at once. Keep it private until you're ready to publish.
+                Varsity, JV, Freshman, and more under one program. Shared events, call-up tracking,
+                arrival and departure times, and team-specific start times.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">🔔</div>
-              <h3>Automatic Notifications</h3>
+              <h3>Automatic notifications</h3>
               <p>
-                Change alerts, new event notifications, cancellations, and weekly digests are sent automatically to parents and contacts via email and GroupMe.
+                Change alerts, cancellations, new events, and weekly digests — sent via email and GroupMe
+                to the people who need them, not a blast to everyone.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">🙋</div>
-              <h3>Volunteer Coordination</h3>
+              <h3>Volunteer coordination</h3>
               <p>
-                Set up volunteer roles, create home game templates, assign standing volunteers, and let parents self-sign-up via a secure QR-code link.
+                Role templates, standing assignments, parent self-signup via QR link, and help-needed
+                alerts when slots are still open before game day.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">👨‍👩‍👧</div>
-              <h3>Parent Roster</h3>
+              <h3>Parent join flow</h3>
               <p>
-                Parents scan a QR code, find their player, and join the program in seconds. Contacts are automatically linked to the correct team.
+                Parents scan a QR code, select their player, and subscribe — linked to the correct team
+                automatically. No app download required.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">🍽</div>
-              <h3>Meal Coordination</h3>
+              <h3>Meal &amp; game-day logistics</h3>
               <p>
-                Designate a meal coordinator who receives targeted notifications for meal time changes and cancellations — with player counts per team including call-ups.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">👥</div>
-              <h3>Multi-Team Support</h3>
-              <p>
-                Manage Varsity, JV, Freshman, and more under one program. Shared events, call-up tracking, and team-specific times all supported.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">🔐</div>
-              <h3>Role-Based Access</h3>
-              <p>
-                Invite coaches, volunteer admins, and meal coordinators with appropriate permissions. Each role sees only what's relevant to them.
-              </p>
-            </div>
-
-            <div class="feature-card">
-              <div class="feature-icon">📊</div>
-              <h3>Schedule Import</h3>
-              <p>
-                Upload your schedule from a spreadsheet with full detail — times, locations, meal info, and team assignments. Duplicates are handled automatically.
+                Meal coordinators get targeted alerts for time changes and cancellations, with player
+                counts per team including call-ups.
               </p>
             </div>
 
             <div class="feature-card">
               <div class="feature-icon">📱</div>
-              <h3>Public Schedule Page</h3>
+              <h3>Public schedule + ICS</h3>
               <p>
-                A shareable, mobile-friendly schedule page for parents and fans — branded with your team colors and logo, no login required.
+                A mobile-friendly public page branded with your colors and logo. Parents subscribe
+                to calendar feeds — no login required.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Import &amp; rollover</h3>
+              <p>
+                Upload schedules and rosters from spreadsheets. Roll seasons forward without rebuilding
+                from scratch every year.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔐</div>
+              <h3>Role-based access</h3>
+              <p>
+                Invite assistant coaches, volunteer admins, and meal coordinators with permissions
+                scoped to what they actually need.
+              </p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💬</div>
+              <h3>GroupMe integration</h3>
+              <p>
+                Push schedule alerts to your existing GroupMe groups. Keep the thread for culture;
+                let SidelineOps handle structured updates.
               </p>
             </div>
           </div>
@@ -867,16 +355,17 @@
       <section class="section">
         <div class="container">
           <div class="section-header">
-            <div class="section-label">Game Day Automation</div>
-            <h2>The right message to the right people, automatically.</h2>
+            <div class="section-label">Automatic alerts</div>
+            <h2>The right message to the right people</h2>
             <p class="section-subtext">
-              SidelineOps HQ sends notifications across the channels your team already uses — no app download required for parents.
+              When you change a start time, parents and event-assigned volunteers hear about it immediately —
+              not when someone remembers to post in the group chat.
             </p>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:26px;">
+          <div class="message-demo-grid">
             <div>
-              <div class="message-label">Example — Change Alert</div>
+              <div class="message-label">Example — Change alert</div>
               <div class="message-demo">
                 <strong>⚡ James Clemens Varsity Softball — Schedule Update</strong><br /><br />
                 Thursday, Apr 24 vs Florence<br />
@@ -892,7 +381,7 @@
             </div>
 
             <div>
-              <div class="message-label">Example — Weekly Digest</div>
+              <div class="message-label">Example — Weekly digest</div>
               <div class="message-demo">
                 <strong>📅 This Week — James Clemens Softball</strong><br /><br />
                 Mon Apr 28 · Practice · 4:00 PM · JCHS Jetsplex<br />
@@ -909,46 +398,34 @@
       <section class="section">
         <div class="container">
           <div class="section-header">
-            <div class="section-label">Built For Everyone on the Sideline</div>
-            <h2>One system for the people running the program.</h2>
+            <div class="section-label">Roles</div>
+            <h2>One system for everyone on the sideline</h2>
             <p class="section-subtext">
-              SidelineOps HQ gives each role exactly what they need — nothing more, nothing less.
+              Each role sees what they need — coaches aren't buried in parent questions,
+              and parents aren't lost in coach-only logistics.
             </p>
           </div>
 
           <div class="role-grid">
             <div class="role-card">
               <div class="role-badge">Coaches</div>
-              <h3>Focus on coaching, not communication.</h3>
+              <h3>Focus on coaching, not chasing texts.</h3>
               <ul>
-                <li>Build and publish the season schedule</li>
-                <li>Automatic change alerts on edits</li>
-                <li>Invite assistant coaches with permissions</li>
-                <li>Suppress notifications when not needed</li>
-                <li>Track volunteer slots per home game</li>
+                <li>Build, import, and publish the season schedule</li>
+                <li>Automatic change alerts when you edit an event</li>
+                <li>Invite assistants with scoped permissions</li>
+                <li>Track volunteer fill status across home games</li>
               </ul>
             </div>
 
             <div class="role-card">
-              <div class="role-badge">Volunteer Admins</div>
+              <div class="role-badge">Volunteer admins</div>
               <h3>Keep game-day roles covered.</h3>
               <ul>
-                <li>Manage volunteer roles and templates</li>
-                <li>Assign standing volunteers automatically</li>
-                <li>Share a QR code for parent self-signup</li>
-                <li>Send help-needed alerts to all contacts</li>
-                <li>View fill status across the full season</li>
-              </ul>
-            </div>
-
-            <div class="role-card">
-              <div class="role-badge">Meal Coordinators</div>
-              <h3>Stay on top of meal logistics.</h3>
-              <ul>
-                <li>Receive alerts for meal time changes</li>
-                <li>See player counts per team with call-ups</li>
-                <li>Get notified on cancellations automatically</li>
-                <li>Edit meal details without touching the schedule</li>
+                <li>Templates and standing volunteer assignments</li>
+                <li>QR code for parent self-signup</li>
+                <li>Help-needed alerts to all program contacts</li>
+                <li>Season-wide view of open slots</li>
               </ul>
             </div>
 
@@ -956,33 +433,130 @@
               <div class="role-badge">Parents</div>
               <h3>Always know what's happening.</h3>
               <ul>
-                <li>Scan QR code to join — no app needed</li>
-                <li>Get change alerts the moment they happen</li>
-                <li>Weekly schedule digest every Sunday</li>
-                <li>Sign up to volunteer for home games</li>
-                <li>View public schedule anytime, anywhere</li>
+                <li>Join via QR — no app or account</li>
+                <li>Change alerts the moment the schedule moves</li>
+                <li>Weekly digest every Sunday</li>
+                <li>Public schedule anytime, anywhere</li>
               </ul>
             </div>
 
             <div class="role-card">
-              <div class="role-badge">Officials &amp; Field Staff</div>
-              <h3>Get the updates that matter to you.</h3>
+              <div class="role-badge">Meal coordinators</div>
+              <h3>Stay ahead of headcounts and changes.</h3>
               <ul>
-                <li>Coach invites officials via secure link</li>
-                <li>Receive change alerts and cancellations</li>
-                <li>No account required — email only</li>
+                <li>Alerts for meal time changes and cancellations</li>
+                <li>Player counts per team with call-ups</li>
+                <li>Edit meal details without touching the schedule</li>
+              </ul>
+            </div>
+
+            <div class="role-card">
+              <div class="role-badge">Officials &amp; field staff</div>
+              <h3>Updates that matter to you only.</h3>
+              <ul>
+                <li>Invited via secure link — no account needed</li>
+                <li>Change alerts and cancellation notices</li>
                 <li>Unsubscribe anytime with one click</li>
               </ul>
             </div>
 
             <div class="role-card">
-              <div class="role-badge">School Admin</div>
-              <h3>Full visibility, no extra work.</h3>
+              <div class="role-badge">Boosters &amp; ADs</div>
+              <h3>Visibility without extra work.</h3>
               <ul>
                 <li>Subscribe to schedule change notifications</li>
-                <li>View the public schedule page anytime</li>
-                <li>No login or account management needed</li>
+                <li>Public schedule page for the program</li>
+                <li>No IT setup or SSO required to start</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING TEASER -->
+      <section class="section" style="padding-top:0;">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-label">Pricing</div>
+            <h2>One program. One price. Unlimited teams.</h2>
+            <p class="section-subtext">
+              Priced for booster budgets, not district procurement cycles.
+              Beta partners get free access through their first season, with founding rates locked at conversion.
+            </p>
+          </div>
+          <div class="highlight-band center">
+            <strong>Founding Program Plan:</strong> $999/year · one sport, all teams · no per-parent fees<br />
+            <a class="btn btn-primary" style="margin-top:20px;min-height:44px;" href="pricing.html">View pricing details</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-header center">
+            <div class="section-label">FAQ</div>
+            <h2>Questions coaches ask before signing up</h2>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Is this replacing GroupMe or our school portal?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                No. SidelineOps HQ is the operational layer for schedules, volunteers, and structured alerts.
+                Keep GroupMe for team culture and your school portal for the official public record.
+                We sit beside them — and integrate with GroupMe for notifications.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                Do parents need to download an app or create accounts?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                No. Parents join via a QR code or link, select their player, and receive email updates.
+                They can view the public schedule and subscribe to an ICS calendar feed without logging in.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                What sports or program sizes is this built for?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                We're focused on high school programs with multiple teams (Varsity, JV, Freshman) —
+                especially softball and baseball where schedule and volunteer complexity is highest.
+                Single-team programs work too, but multi-team is where SidelineOps HQ shines.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                How does beta access work?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Beta is invite-only. Request access with your program name and sport — we'll reach out
+                to schedule a short onboarding call, help import your schedule, and get parents connected
+                before your season ramps up.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false">
+                What about SMS text alerts?
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                Email is our primary channel in beta — it reaches parents reliably without per-message costs.
+                GroupMe covers teams that prefer instant mobile notifications. SMS is on the roadmap;
+                we'll add it when programs need it, not before.
+              </div>
             </div>
           </div>
         </div>
@@ -994,13 +568,12 @@
           <div class="cta-card">
             <div class="eyebrow" style="display:inline-flex;margin-bottom:24px;">
               <span class="beta-dot"></span>
-              Beta Access Now Open
+              Beta access open for select programs
             </div>
-            <h2>Ready to run a cleaner operation?</h2>
+            <h2>Ready for a cleaner season?</h2>
             <p>
-              SidelineOps HQ is currently in beta with select high school athletic programs. 
-              Request access to be among the first programs to use the full platform — 
-              and help shape what gets built next.
+              Join programs like James Clemens Softball in beta. We'll help you import your schedule,
+              connect parents, and run your first month on SidelineOps HQ — then you tell us what to build next.
             </p>
             <div class="cta-actions">
               <a class="btn btn-primary" style="min-height:54px;padding:0 32px;font-size:1rem;" href="https://app.sidelineopshq.com/signup">
@@ -1010,25 +583,44 @@
                 Sign In
               </a>
             </div>
-            <p class="cta-note">Beta is invite-only. Enter your email to request an access code.</p>
+            <p class="cta-note">Questions? <a href="mailto:support@sidelineopshq.com" style="color:var(--carolina-light);">support@sidelineopshq.com</a></p>
           </div>
         </div>
       </section>
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="container footer-inner">
-        <div>© 2026 SidelineOps HQ™ — Team operations built for the sideline.</div>
-        <div class="footer-links">
-          <a href="https://app.sidelineopshq.com/legal/terms">Terms of Service</a>
-          <a href="https://app.sidelineopshq.com/legal/privacy">Privacy Policy</a>
-          <a href="mailto:support@sidelineopshq.com">Contact</a>
+        <div class="footer-brand">
+          <strong>SidelineOps HQ</strong>
+          Program operations for high school athletics — schedules, volunteers, and parent communication.
+        </div>
+        <div>
+          <div class="footer-col-title">Product</div>
+          <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="compare.html">Compare</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="https://app.sidelineopshq.com/signup">Request Access</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <div class="footer-links">
+            <a href="https://app.sidelineopshq.com/legal/terms">Terms of Service</a>
+            <a href="https://app.sidelineopshq.com/legal/privacy">Privacy Policy</a>
+            <a href="mailto:support@sidelineopshq.com">support@sidelineopshq.com</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 SidelineOps HQ, LLC · Madison, AL</span>
+          <span>Team operations built for the sideline.</span>
         </div>
       </div>
     </footer>
 
   </div>
+  <script src="assets/site.js"></script>
 </body>
 </html>
